@@ -14,8 +14,12 @@ class Settings(BaseSettings):
     MARIADB_PORT: int = 3306
     MARIADB_DATABASE: str = "monitor_db"
     
+    DATABASE_URL: str = ""
+    
     @property
-    def DATABASE_URL(self) -> str:
+    def get_database_url(self) -> str:
+        if self.DATABASE_URL:
+            return self.DATABASE_URL
         return f"mysql+asyncmy://{self.MARIADB_USER}:{self.MARIADB_PASSWORD}@{self.MARIADB_HOST}:{self.MARIADB_PORT}/{self.MARIADB_DATABASE}"
         
     class Config:
