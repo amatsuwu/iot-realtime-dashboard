@@ -32,7 +32,13 @@ if "latest_metrics" not in st.session_state:
 # 解決「無窮迴圈卡死主執行緒」的地雷
 def start_websocket_thread():
     async def listen():
-        uri = "ws://127.0.0.1:8000/api/v1/monitor/ws"
+        import os
+        backend_url = os.getenv("BACKEND_URL", "http://127.0.0.1:8000")
+        # 自動判斷要用 ws 還是 wss
+        ws_scheme = "wss" if backend_url.startswith("https") else "ws"
+        host = backend_url.replace("http://", "").replace("https://", "")
+        uri = f"{ws_scheme}://{host}/api/v1/monitor/ws"
+        
         try:
             async with websockets.connect(uri) as websocket:
                 while True:

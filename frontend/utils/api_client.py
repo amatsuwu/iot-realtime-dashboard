@@ -1,8 +1,10 @@
+import os
 import requests
 import streamlit as st
 
-# FastAPI 後端的基礎網址
-BASE_URL = "http://127.0.0.1:8000/api/v1"
+# 從環境變數讀取後端網址，預設為 localhost
+BACKEND_URL = os.getenv("BACKEND_URL", "http://127.0.0.1:8000")
+BASE_URL = f"{BACKEND_URL}/api/v1"
 
 def get_headers():
     """
