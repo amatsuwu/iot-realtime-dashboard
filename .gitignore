@@ -1,0 +1,27 @@
+# 虛擬環境
+venv/
+env/
+.venv/
+.env
+
+# 快取檔案
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# 資料庫紀錄與日誌
+*.sqlite
+*.db
+system.log
+alembic.ini
+
+# IDE 與系統
+.DS_Store
+.idea/
+.vscode/
+
+# 模擬測試與暫存檔案
+*.csv
+*.xlsx
+wheels/
