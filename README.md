@@ -104,3 +104,15 @@ FastAPI 自動產生了符合 OpenAPI 標準的互動式文件。當後端伺服
 2. 在登入介面中，點擊上方頁籤切換至 **「註冊」**
 3. 輸入您想要的帳號名稱、密碼，並從下拉選單中選擇您想要的**角色** (`Admin`, `User`, 或 `Viewer`)
 4. 點擊註冊按鈕，系統會自動將密碼加密 (Bcrypt) 並存入 MariaDB 資料庫中。註冊成功後即可立即登入！
+
+---
+
+## 🧪 架構與整合測試腳本 (Test Scripts)
+為了展示系統開發過程中的「測試驅動 (Test-Driven)」思維，專案根目錄保留了各核心模組的獨立測試腳本。審查人員可以直接檢視或執行這些檔案，以驗證系統底層的穩固性：
+
+1. **資料庫連線與建表**：`test_db.py`、`test_tables.py` (驗證 `asyncmy` 與 ORM)
+2. **CRUD 寫入與密碼雜湊**：`test_create.py`
+3. **JWT 授權與 RESTful API**：`test_api.py`
+4. **WebSocket 廣播與非同步推播**：`test_websocket_client.py`
+
+*(測試方式：確保虛擬環境啟動且資料庫運行中，於終端機直接執行 `python <腳本名稱>.py` 即可檢視測試輸出結果)*
